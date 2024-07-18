@@ -62,6 +62,40 @@
 
 </div>
 
+<footer class="bg-dark text-white mt-5 p-4 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>About Us</h5>
+                <p>Note App is your go-to platform for organizing your thoughts and ideas effortlessly. Start your journey to enhanced productivity with our intuitive note-taking platform.</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Home</a></li>
+                    <li><a href="#" class="text-white">Features</a></li>
+                    <li><a href="#" class="text-white">Pricing</a></li>
+                    <li><a href="#" class="text-white">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="mt-3">
+            <p>&copy; 2024 Note App.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Font Awesome for social media icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
