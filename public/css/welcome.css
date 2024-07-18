@@ -1,0 +1,29 @@
+.navbar{
+    background-color: #1a1a1a;
+}
+.nav-item{
+    color: white;
+}
+
+.nav-item:hover{
+    color: darkred;
+}
+.btn-danger{
+    margin-right: 5px;
+}
+body{
+    background-color: #252525;
+}
+.h1-welcome{
+    color: white;
+    margin-right: 2px;
+}
+.paragraph-welcome{
+    margin-right: 2px;
+    font-size: 30px;
+    color: white;
+
+}
+span{
+    color: #a80303;
+}
