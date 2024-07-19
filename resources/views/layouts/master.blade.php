@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
-    <title>Welcome</title>
+    <title>@yield('title')</title>
 </head>
 <body>
 <nav class="navbar">
@@ -19,48 +19,41 @@
             Note App
         </a>
 
-        @if (Route::has('login'))
+
             <div class="d-flex ms-auto ">
-            @auth
-                <a class="btn btn-danger fs-8 fw-bold " href="{{ route('note.index') }} "> Home  </a>
-            @else
-                <a class="btn btn-danger  fs-8 fw-bold " href="{{ route('login') }}" > Log in  </a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item " href="{{route('profile.edit')}}">Profile</a></li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <li><a class="dropdown-item" href="{{route('logout')}}"
+                                onclick="event.preventDefault();
+                                   this.closest('form').submit();">Log Out</a></li>
 
-                @if (Route::has('register'))
-                    <a class="btn btn-danger fs-8 fw-bold " href="{{ route('register') }}" > Register </a>
-                @endif
-            @endauth
+                        </form>
+                    </ul>
+                </div>
             </div>
-        @endif
-
     </div>
 </nav>
 
-<div class="container mt-5" >
-    <div class="row align-items-center">
-        <div class="col-12">
-            <h1 class="h1-welcome mt-5 ">Welcome to <span>Note App</span></h1>
-             <p  class=" paragraph-welcome " >
-
-                    where organizing your thoughts and ideas is effortless.
-                    Start your journey to enhanced productivity with our intuitive note-taking platform.
-                    Stay focused and organized with Note Web’s user-friendly interface.
-                    Explore the simplicity of note-taking redefined for a more productive you.
-                    Experience seamless note organization tailored to your needs on Note App.
-             </p>
-            <h3 class="h1-welcome ">Lets Go</h3>
-        </div>
-    </div>
-
-    <div class="row align-items-start mt-4">
-        <div class="col-md-6">
-            <img  src="{{ asset('photos/Note-Body.svg') }}" alt="" width="500" height="500" class="img-fluid d-inline-block align-text-top">
-        </div>
-    </div>
-
-
-
 </div>
+
+
+
+
+@yield('content')
+
+
+
+
+
+
+
+
 
 <footer class="bg-dark text-white mt-5 p-4 text-center">
     <div class="container">
@@ -90,6 +83,8 @@
             <p>&copy; 2024 Note App.</p>
         </div>
     </div>
+
+
 </footer>
 
 <!-- Font Awesome for social media icons -->
