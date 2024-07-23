@@ -11,6 +11,9 @@
 .btn-danger{
     margin-right: 5px;
 }
+.icon-fav{
+    margin-right: 5px;
+}
 body{
     background-color: #252525;
 }
@@ -26,4 +29,46 @@ body{
 }
 span{
     color: #a80303;
+}
+
+
+
+
+
+/*  master */
+ .navbar-toggler-icon {
+     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+ }
+
+
+.navbar-nav .nav-item .nav-link {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ff6347 !important;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ff6347;
+}
+
+
+
+.card-custom {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 0px;
+}
+.card-custom .card-title {
+    color: #343a40;
+}
+.card-custom .card-text {
+    color: #6c757d;
+}
+.card-header{
+    background-color: #6c757d;
+    margin: 0px;
+}
+
+.card-header h5  {
+    color: black;
 }

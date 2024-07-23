@@ -7,21 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
     <title>@yield('title')</title>
+
+
+
 </head>
 <body>
-<nav class="navbar">
+
+
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class=" nav-item navbar-brand fs-5 fw-bold" href="#">
+        <a class=" nav-item navbar-brand fs-5 fw-bold" href="{{route('home')}}">
             <img  src="{{ asset('photos/Note-Icone.png') }}" alt="" width="35" height="35" class="d-inline-block align-text-top">
             Note App
         </a>
 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        @yield('nav-home-link')
 
             <div class="d-flex ms-auto ">
-                <div class="dropdown">
+                <div class="dropdown ">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </button>
@@ -37,10 +49,12 @@
                     </ul>
                 </div>
             </div>
+</div>
     </div>
 </nav>
 
 </div>
+
 
 
 
@@ -65,7 +79,7 @@
             <div class="col-md-4">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">Home</a></li>
+                    <li><a href="{{route('home')}}" class="text-white">Home</a></li>
                     <li><a href="#" class="text-white">Features</a></li>
                     <li><a href="#" class="text-white">Pricing</a></li>
                     <li><a href="#" class="text-white">Contact Us</a></li>

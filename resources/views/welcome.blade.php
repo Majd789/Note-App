@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar">
     <div class="container-fluid">
-        <a class=" nav-item navbar-brand fs-5 fw-bold" href="#">
+        <a class=" nav-item navbar-brand fs-5 fw-bold" href="{{route('home')}}">
             <img  src="{{ asset('photos/Note-Icone.png') }}" alt="" width="35" height="35" class="d-inline-block align-text-top">
             Note App
         </a>
@@ -22,7 +22,7 @@
         @if (Route::has('login'))
             <div class="d-flex ms-auto ">
             @auth
-                <a class="btn btn-danger fs-8 fw-bold " href="{{ route('note.index') }} "> Home  </a>
+                <a class="btn btn-danger fs-8 fw-bold " href="{{ route('home') }} "> Home  </a>
             @else
                 <a class="btn btn-danger  fs-8 fw-bold " href="{{ route('login') }}" > Log in  </a>
 
@@ -72,7 +72,7 @@
             <div class="col-md-4">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">Home</a></li>
+                    <li><a href="{{route('home')}}" class="text-white">Home</a></li>
                     <li><a href="#" class="text-white">Features</a></li>
                     <li><a href="#" class="text-white">Pricing</a></li>
                     <li><a href="#" class="text-white">Contact Us</a></li>
