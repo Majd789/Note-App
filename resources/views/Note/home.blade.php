@@ -57,13 +57,16 @@
 
 
     @foreach($notes as $note)
+
                 <div class="col-md-12 mb-4">
+                    <a href="{{route('note.show' , $note->id)}}">
                     <div class="card card-custom">
                         <div class="card-body">
                             <h5 class="card-title">{{$note->title}}</h5>
                             <p class="card-text">{{$note->body}} </p>
                         </div>
                     </div>
+                    </a>
                 </div>
 
     @endforeach

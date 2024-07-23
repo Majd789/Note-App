@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
 //    Route::get('/notes', [\App\Http\Controllers\NoteController::class, 'index'])->name('note.index');
     Route::get('/note/create',[\App\Http\Controllers\NoteController::class, 'create'])->name('note.create');
     Route::post('/note/store',[\App\Http\Controllers\NoteController::class, 'store'])->name('note.store');
+    Route::get('/note/show/{id}',[\App\Http\Controllers\NoteController::class, 'show'])->name('note.show');
+    Route::get('/note/edit/{id}',[\App\Http\Controllers\NoteController::class, 'edit'])->name('note.edit');
+    Route::put('/note/update/{id}',[\App\Http\Controllers\NoteController::class, 'update'])->name('note.update');
 
 });
 
