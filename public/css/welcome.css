@@ -54,16 +54,24 @@ span{
 
 
 .card-custom {
-    background-color: #f8f9fa;
+    background-color: #212529;
     color: #343a40;
+    border: 2px solid #ff6347;
     padding: 0px;
 }
+
+.card-custom:hover{
+    background-color: #343a40;
+}
+
 .card-custom .card-title {
-    color: #343a40;
+    color: white;
 }
+
 .card-custom .card-text {
-    color: #6c757d;
+    color: white;
 }
+
 .card-header{
     background-color: #6c757d;
     margin: 0px;
@@ -71,4 +79,43 @@ span{
 
 .card-header h5  {
     color: black;
+}
+
+
+
+
+
+
+
+
+
+.card-custom-folder {
+    background-color: #212529;
+    color: #343a40;
+    border: 2px solid #ff6347;
+    padding: 0px;
+}
+
+.card-custom-folder:hover{
+    background-color: #343a40;
+}
+
+.card-custom-folder .card-title {
+    color: white;
+}
+
+.card-custom-folder .card-text {
+    color: white;
+}
+
+.card-custom-folder .card-created-at {
+    color: white;
+}
+.card-custom-folder .card-title span {
+    color: #ff6347 ;
+}
+
+
+.name_folder_in_note_show{
+    color: #ff6347 ;
 }
