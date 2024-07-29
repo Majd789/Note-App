@@ -29,7 +29,7 @@
     <div class=" p-2 d-flex justify-content-center justify-content-md-start flex-wrap mb-auto mt-4">
            @foreach($folders as $folder)
 
-            <a style=" text-decoration: none;" href="{{route('folder.content', $folder->id)}}">
+            <a style=" text-decoration: none;" href="{{route('folder.show', $folder->id)}}">
                 <div class="card-custom-folder " style="margin: 5px; width: 18rem;">
 {{--                    <img src=" " class="card-img-top" alt="">--}}
                     <div class="card-body">

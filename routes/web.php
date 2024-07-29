@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/folders', [\App\Http\Controllers\FolderController::class, 'index'])->name('folder.index');
     Route::get('/folder/create',[\App\Http\Controllers\FolderController::class, 'create'])->name('folder.create');
     Route::post('/folder/store',[\App\Http\Controllers\FolderController::class, 'store'])->name('folder.store');
-//    Route::get('/note/show/{id}',[\App\Http\Controllers\NoteController::class, 'show'])->name('note.show');
+    Route::get('/folder/show/{id}',[\App\Http\Controllers\FolderController::class, 'show'])->name('folder.show');
 //    Route::get('/note/edit/{id}',[\App\Http\Controllers\NoteController::class, 'edit'])->name('note.edit');
 //    Route::put('/note/update/{id}',[\App\Http\Controllers\NoteController::class, 'update'])->name('note.update');
 //    Route::delete('/note/delete/{id}',[\App\Http\Controllers\NoteController::class, 'destroy'])->name('note.delete');

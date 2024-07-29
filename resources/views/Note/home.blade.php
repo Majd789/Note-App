@@ -32,6 +32,8 @@
     <div class="mt-4 d-flex justify-content-center">
         <a class="btn btn-primary" href="{{route('note.create')}}">Create Note</a>
     </div>
+
+
 {{--card notes--}}
     <div class="container mt-4">
         <div class="row">

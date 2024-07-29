@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Folder;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isEmpty;
 
 class NoteController extends Controller
 {
@@ -47,7 +48,19 @@ class NoteController extends Controller
     {
         $folders= Folder::where('user_id' ,$request->user()->id)->get();
         $note = Note::find($id);
-        return view('Note.show',['note'=>$note , 'folders'=>$folders]);
+        $folder = Note::find($id)->folder;
+        if ($folder) {
+            $folder = $folder->name;
+        }
+        else{
+            $folder = 'Null';
+        }
+
+
+
+        return view('Note.show',['note'=>$note , 'folders'=>$folders ,'folder_name'=>$folder]);
+
+
 
     }
 

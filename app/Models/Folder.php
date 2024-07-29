@@ -14,4 +14,9 @@ class Folder extends Model
         'name',
         'description'
     ];
+
+
+    public function notes (){
+        return $this->hasMany(Note::class);
+    }
 }

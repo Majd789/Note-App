@@ -94,6 +94,8 @@ span{
     color: #343a40;
     border: 2px solid #ff6347;
     padding: 0px;
+
+
 }
 
 .card-custom-folder:hover{
@@ -102,10 +104,20 @@ span{
 
 .card-custom-folder .card-title {
     color: white;
+    width: 250px; /* اجعل حجم المربع ثابتًا */
+    height: 50px;
+    overflow: hidden;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 .card-custom-folder .card-text {
     color: white;
+    width: 250px; /* اجعل حجم المربع ثابتًا */
+    height: 150px;
+    overflow: hidden;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 .card-custom-folder .card-created-at {

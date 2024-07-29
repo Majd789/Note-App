@@ -16,4 +16,9 @@ class Note extends Model
         'body',
         'favorite',
     ];
+
+    public function folder (){
+        return $this->belongsTo(Folder::class);
+    }
+
 }

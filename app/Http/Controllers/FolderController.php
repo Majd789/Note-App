@@ -43,9 +43,14 @@ class FolderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Folder $folder)
+    public function show(string $id)
     {
-        //
+
+        $folder = Folder::find($id);
+
+        $notes = Folder::find($id)->notes;
+        return view('Folder.show' , compact( 'notes' , 'folder'));
+
     }
 
     /**

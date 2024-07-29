@@ -36,14 +36,9 @@
                     <div class="card-body">
                      <h5 class="card-title">{{$note->title}}</h5>
                      <p class="card-text">{{$note->body}} </p>
-                        @if($note->folder_id)
-                            @foreach($folders as $folder)
-                               @if($folder->id ==$note->folder_id )
-                                   <p class="text-white">Folder : <span class="name_folder_in_note_show" >{{$folder->name}}</span></p>
-                               @endif
-                                @break;
-                            @endforeach
-                        @endif
+
+                            <p class="text-white">Folder : <span class="name_folder_in_note_show" >{{$folder_name}}</span></p>
+
                         <p class="text-white">Created At: {{$note->created_at}}</p>
                     </div>
                 </div>
@@ -56,7 +51,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         @foreach($folders as $folder)
-                        <li><a class="dropdown-item" href="{{route('add.to.folder', [$note->id ,$folder->id] )}}">{{$folder->name}}</a></li>
+                        <li><a class="dropdown-item" href="{{route('add.to.folder', [$note->id ,$folder->id] )}}"> {{$folder->name}}</a></li>
 {{--                        <li><a class="dropdown-item" href="#">Another action</a></li>--}}
 {{--                        <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
                         @endforeach
