@@ -18,14 +18,14 @@
         @method('patch')
         <div class="mb-3"  >
             <label class="text-white" for="name" >Name</label>
-            <input class="form-control" id="name"  name="name"  type="text"   :value="old('name', $user->name)" required  autocomplete="name" >
+            <input class="form-control" id="name"  name="name"  type="text"  value="{{$user->name}}" required  autocomplete="name" >
             <x-input-error class="mt-2" :messages="$errors->get('name')" class="mt-2 text-white" />
         </div>
 
 
         <div class="mb-3">
             <label class="text-white" for="email" >Email</label>
-            <input class="form-control" id="email" name="email" type="email"  :value="old('email', $user->email)" required autocomplete="username"  >
+            <input class="form-control" id="email" name="email" type="email"  value="{{$user->email}}" required autocomplete="username"  >
             <x-input-error class="mt-2" :messages="$errors->get('email') " class="mt-2 text-white"/>
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 

@@ -104,4 +104,13 @@ class NoteController extends Controller
 
         return to_route('note.show',$note_id);
     }
+    public function add_To_Favorite (string $id){
+        $note = Note::find($id);
+        $is_fav = !$note->favorite;
+        $note = Note::find($id)->update([
+            'favorite'=>$is_fav
+        ]);
+        return to_route('home');
+
+    }
 }

@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/note/update/{id}',[\App\Http\Controllers\NoteController::class, 'update'])->name('note.update');
     Route::delete('/note/delete/{id}',[\App\Http\Controllers\NoteController::class, 'destroy'])->name('note.delete');
     Route::get('/note/{note_id}/add_to/folder/{folder_id}',[\App\Http\Controllers\NoteController::class, 'addToFolder'])->name('add.to.folder');
+    Route::get('/note/{id}/add/favorite' ,[\App\Http\Controllers\NoteController::class ,'add_To_Favorite'])->name('note.favorite');
 
 });
 
@@ -40,14 +41,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/folder/create',[\App\Http\Controllers\FolderController::class, 'create'])->name('folder.create');
     Route::post('/folder/store',[\App\Http\Controllers\FolderController::class, 'store'])->name('folder.store');
     Route::get('/folder/show/{id}',[\App\Http\Controllers\FolderController::class, 'show'])->name('folder.show');
-//    Route::get('/note/edit/{id}',[\App\Http\Controllers\NoteController::class, 'edit'])->name('note.edit');
-//    Route::put('/note/update/{id}',[\App\Http\Controllers\NoteController::class, 'update'])->name('note.update');
-//    Route::delete('/note/delete/{id}',[\App\Http\Controllers\NoteController::class, 'destroy'])->name('note.delete');
-
+    Route::get('/folder/edit/{id}',[\App\Http\Controllers\FolderController::class, 'edit'])->name('folder.edit');
+    Route::put('/folder/update/{id}',[\App\Http\Controllers\FolderController::class, 'update'])->name('folder.update');
+    Route::delete('/folder/delete/{id}',[\App\Http\Controllers\FolderController::class, 'destroy'])->name('folder.delete');
     Route::get('/folder/{id}/notes' ,[\App\Http\Controllers\FolderController::class ,'folder_content'])->name('folder.content');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/favorites', [\App\Http\Controllers\FavoriteController::class, 'index'])->name('favorite.index');
 
+});
 
 
 

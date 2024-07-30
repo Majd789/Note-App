@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Folder;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use PhpParser\Node\Scalar\String_;
 
 class FolderController extends Controller
 {
@@ -14,6 +15,8 @@ class FolderController extends Controller
     public function index(Request $request)
     {
         $folders = Folder::where('user_id' ,$request->user()->id)->get();
+//        $NO_Note =Folder::find(6)->notes->count();
+//        dd($NO_Note);
 
         return view('Folder.index' ,['folders'=>$folders]);
     }
@@ -56,25 +59,31 @@ class FolderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Folder $folder)
+    public function edit(string $id)
     {
-        //
+        $folder = Folder::find($id);
+        return view('Folder.edit' , compact('folder'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Folder $folder)
+    public function update(Request $request, string  $id)
     {
-        //
+        $folder = Folder::find($id)->update([
+            'name'=>$request->name,
+            'description'=>$request->description
+        ]);
+        return to_route('folder.show',$id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Folder $folder)
+    public function destroy(string $id)
     {
-        //
+        Folder::find($id)->delete();
+        return to_route('folder.index');
     }
 
 

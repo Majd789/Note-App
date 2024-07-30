@@ -66,10 +66,14 @@ span{
 
 .card-custom .card-title {
     color: white;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 .card-custom .card-text {
     color: white;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 .card-header{
@@ -130,4 +134,9 @@ span{
 
 .name_folder_in_note_show{
     color: #ff6347 ;
+}
+
+
+.favorite-icon{
+    margin: 10px;
 }

@@ -5,17 +5,18 @@
 @endsection
 
 @section('nav-home-link')
-<ul class="d-flex navbar-nav flex-col me-auto mb-2 mb-lg-0">
-    <li class="nav-item">
-        <a class="nav-link text-white "  href="{{route('home')}}">Home</a>
-    </li>
-    {{--        <li class="nav-item">--}}
-    {{--            <a class="nav-link text-white" href="#">Folders</a>--}}
-    {{--        </li>--}}
-    {{--        <li class="nav-item">--}}
-    {{--            <a class="nav-link text-white" href="#">Favorites</a>--}}
-    {{--        </li>--}}
-</ul>
+    <ul class="d-flex navbar-nav flex-col me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link text-white "  href="{{route('home')}}">All Notes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{{route('folder.index')}}">Folders</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{{route('favorite.index')}}">Favorites</a>
+        </li>
+    </ul>
+
 
 @endsection
 
@@ -25,7 +26,7 @@
     <div class="mt-4 d-flex justify-content-center">
         <a class="btn btn-primary" href="{{route('folder.create')}}">Create Folder</a>
     </div>
-
+    @if($folders->isNotEmpty())
     <div class=" p-2 d-flex justify-content-center justify-content-md-start flex-wrap mb-auto mt-4">
            @foreach($folders as $folder)
 
@@ -35,14 +36,22 @@
                     <div class="card-body">
                         <h5 class="card-title"><span>{{$folder->name}}</span> </h5>
                         <p class="card-text">{{$folder->description}}.</p>
-                        <p class="card-created-at"> created at {{$folder->created_at}}</p>
+                        <p class="card-created-at"> created_at: {{$folder->created_at}}</p>
+                        <p class="card-created-at"> NO.Note: {{$folder->notes->count()}}</p>
                     </div>
                 </div>
             </a>
 
             @endforeach
-
     </div>
+        @else
+            <div class="d-flex justify-content-center mt-3">
+                <img  src="{{ asset('photos/No-Folder.svg') }}" alt="Not Found DATA" class="img-fluid">
+            </div>
+        @endif
+
+
+
 
 
 

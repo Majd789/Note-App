@@ -33,6 +33,14 @@
 @section('title')
     Profile
 @endsection
+
+@section('nav-home-link')
+    <ul class="d-flex navbar-nav flex-col me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link text-white "  href="{{route('home')}}">Home</a>
+        </li>
+    </ul>
+@endsection
 @section('content')
 
     <div class="container  ">
