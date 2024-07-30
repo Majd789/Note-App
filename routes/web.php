@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,16 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/favorites', [\App\Http\Controllers\FavoriteController::class, 'index'])->name('favorite.index');
 
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/favorites', [\App\Http\Controllers\FavoriteController::class, 'index'])->name('favorite.index');
+// عرض نموذج الاتصال
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
+// إرسال نموذج الاتصال
+    Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 });
 
 

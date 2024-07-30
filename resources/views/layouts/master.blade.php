@@ -82,9 +82,8 @@
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
                     <li><a href="{{route('home')}}" class="text-white">Home</a></li>
-                    <li><a href="#" class="text-white">Features</a></li>
-                    <li><a href="#" class="text-white">Pricing</a></li>
-                    <li><a href="#" class="text-white">Contact Us</a></li>
+                    <li><a href="/" class="text-white">Welcome</a></li>
+                    <li><a href="{{route('contact.index')}}" class="text-white">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -96,7 +95,7 @@
             </div>
         </div>
         <div class="mt-3">
-            <p>&copy; 2024 Note App.</p>
+            <p>&copy; 2024 Majd Al-Steif.</p>
         </div>
     </div>
 
