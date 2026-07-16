@@ -2,115 +2,105 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Note\AddNoteToFolderRequest;
+use App\Http\Requests\Note\StoreNoteRequest;
+use App\Http\Requests\Note\UpdateNoteRequest;
 use App\Models\Folder;
 use App\Models\Note;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\View\View;
 
 class NoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
-        $notes = Note::where('user_id', $request->user()->id)->get();
-        return view('Note.home',['notes'=>$notes]);
+        $this->authorize('viewAny', Note::class);
+
+        $notes = Note::query()
+            ->forUser($request->user()->id)
+            ->latest()
+            ->get();
+
+        return view('Note.home', compact('notes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
+        $this->authorize('create', Note::class);
+
         return view('Note.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreNoteRequest $request): RedirectResponse
     {
+        $request->user()->notes()->create($request->validated());
 
-        $note = Note::create([
-            'user_id'=>$request->user()->id,
-            'title'=>$request->title,
-            'body'=>$request->description
+        return to_route('home')->with('success', 'Note created successfully.');
+    }
+
+    public function show(Request $request, Note $note): View
+    {
+        $this->authorize('view', $note);
+
+        $note->load('folder');
+
+        $folders = Folder::query()
+            ->forUser($request->user()->id)
+            ->orderBy('name')
+            ->get();
+
+        $folderName = $note->folder?->name ?? 'None';
+
+        return view('Note.show', [
+            'note' => $note,
+            'folders' => $folders,
+            'folder_name' => $folderName,
+        ]);
+    }
+
+    public function edit(Note $note): View
+    {
+        $this->authorize('update', $note);
+
+        return view('Note.edit', compact('note'));
+    }
+
+    public function update(UpdateNoteRequest $request, Note $note): RedirectResponse
+    {
+        $note->update($request->validated());
+
+        return to_route('note.show', $note)->with('success', 'Note updated successfully.');
+    }
+
+    public function destroy(Note $note): RedirectResponse
+    {
+        $this->authorize('delete', $note);
+
+        $note->delete();
+
+        return to_route('home')->with('success', 'Note deleted successfully.');
+    }
+
+    public function addToFolder(AddNoteToFolderRequest $request, Note $note): RedirectResponse
+    {
+        $folder = Folder::query()
+            ->forUser($request->user()->id)
+            ->findOrFail($request->validated('folder_id'));
+
+        $note->update([
+            'folder_id' => $folder->id,
         ]);
 
-        return to_route('home' ,$note);
+        return to_route('note.show', $note)->with('success', 'Note added to folder.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Request $request , string $id)
+    public function toggleFavorite(Note $note): RedirectResponse
     {
-        $folders= Folder::where('user_id' ,$request->user()->id)->get();
-        $note = Note::find($id);
-        $folder = Note::find($id)->folder;
-        if ($folder) {
-            $folder = $folder->name;
-        }
-        else{
-            $folder = 'Null';
-        }
+        $this->authorize('update', $note);
 
+        $note->toggleFavorite();
 
-
-        return view('Note.show',['note'=>$note , 'folders'=>$folders ,'folder_name'=>$folder]);
-
-
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-
-    {
-        $note = Note::find($id);
-        return view('Note.edit',['note'=>$note]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $note = Note::find($id)->update([
-            'title'=>$request->title,
-            'body'=>$request->description
-        ]);
-        return to_route('note.show',$id);
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        Note::find($id)->delete();
-        return redirect('home');
-
-    }
-
-    public function addToFolder(string $note_id , string $folder_id ){
-      $note = Note::find($note_id)->update([
-          'folder_id'=>$folder_id
-       ]);
-
-        return to_route('note.show',$note_id);
-    }
-    public function add_To_Favorite (string $id){
-        $note = Note::find($id);
-        $is_fav = !$note->favorite;
-        $note = Note::find($id)->update([
-            'favorite'=>$is_fav
-        ]);
-        return to_route('home');
-
+        return back()->with('success', $note->favorite ? 'Added to favorites.' : 'Removed from favorites.');
     }
 }

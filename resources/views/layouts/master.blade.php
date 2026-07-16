@@ -6,24 +6,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <title>@yield('title')</title>
-
-
-
+    <title>@yield('title', 'Note App')</title>
 </head>
 <body>
 
-
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class=" nav-item navbar-brand fs-5 fw-bold" href="{{route('home')}}">
-            <img  src="{{ asset('photos/Note-Icone.png') }}" alt="" width="35" height="35" class="d-inline-block align-text-top">
+        <a class="nav-item navbar-brand fs-5 fw-bold" href="{{ route('home') }}">
+            <img src="{{ asset('photos/Note-Icone.png') }}" alt="Note App" width="35" height="35" class="d-inline-block align-text-top">
             Note App
         </a>
 
@@ -31,31 +26,28 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        @yield('nav-home-link')
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            @yield('nav-home-link')
 
-            <div class="d-flex ms-auto ">
-                <div class="dropdown ">
+            <div class="d-flex ms-auto">
+                <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item " href="{{route('profile.edit')}}">Profile</a></li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <li><a class="dropdown-item" href="{{route('logout')}}"
-                                onclick="event.preventDefault();
-                                   this.closest('form').submit();">Log Out</a></li>
-
-                        </form>
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Log Out</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
-</div>
+        </div>
     </div>
 </nav>
-
-</div>
 
 
 
@@ -95,19 +87,12 @@
             </div>
         </div>
         <div class="mt-3">
-            <p>&copy; 2024 Majd Al-Steif.</p>
+            <p>&copy; {{ date('Y') }} Majd Al-Steif.</p>
         </div>
     </div>
-
-
 </footer>
 
-<!-- Font Awesome for social media icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 @stack('script')
 </body>
 </html>

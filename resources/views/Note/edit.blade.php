@@ -1,38 +1,29 @@
 @extends('layouts.master')
 
-@section('Edit Note')
+@section('title')
     Edit Note
 @endsection
 
 @section('nav-home-link')
-
-    <ul class="d-flex navbar-nav flex-col me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link text-white "  href="{{route('home')}}">All Notes</a>
-        </li>
-    </ul>
+    @include('partials.app-nav-links')
 @endsection
 
 @section('content')
-
-
     <div class="container mt-2">
-        <form method="post" action="{{route('note.update' ,$note->id)}}">
+        @include('partials.validation-errors')
+
+        <form method="POST" action="{{ route('note.update', $note) }}">
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="title" class="form-label text-white">Title </label>
-                <input type="text" name="title" class="form-control" id="title" required value="{{$note->title}}">
+                <label for="title" class="form-label text-white">Title</label>
+                <input type="text" name="title" class="form-control" id="title" required value="{{ old('title', $note->title) }}">
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label text-white">Description</label>
-                {{--            <input type="text" name="description" class="form-control" id="description">--}}
-                <textarea name="description" class="form-control" id="description" rows="6" required > {{$note->body}}</textarea>
+                <label for="body" class="form-label text-white">Description</label>
+                <textarea name="body" class="form-control" id="body" rows="6" required>{{ old('body', $note->body) }}</textarea>
             </div>
-
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
-
-
 @endsection

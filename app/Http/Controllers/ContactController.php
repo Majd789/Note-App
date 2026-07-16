@@ -2,35 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Contact\ContactRequest;
 use App\Mail\ContactMail;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('Contact.index');
     }
 
-    public function submit(Request $request)
+    public function submit(ContactRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'subject' => 'required',
-            'message' => 'required',
-        ]);
+        $recipient = config('mail.contact_address', config('mail.from.address'));
 
-        $details = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message,
-        ];
-
-        // منطق إرسال البريد الإلكتروني
-        Mail::to('majdhasanalstef@gmail.com')->send(new ContactMail($details));
+        Mail::to($recipient)->send(new ContactMail($request->validated()));
 
         return back()->with('success', 'Your message has been sent successfully!');
     }
